@@ -1,0 +1,4 @@
+com.example.timer.test.app-androidTest-0 D:\bsuir_sem_6\MOBILE\LR2\LR2\app\build\generated\res\resValues\androidTest\debug
+com.example.timer.test.app-mergeDebugAndroidTestResources-1 D:\bsuir_sem_6\MOBILE\LR2\LR2\app\build\intermediates\incremental\debugAndroidTest\mergeDebugAndroidTestResources\merged.dir
+com.example.timer.test.app-mergeDebugAndroidTestResources-2 D:\bsuir_sem_6\MOBILE\LR2\LR2\app\build\intermediates\incremental\debugAndroidTest\mergeDebugAndroidTestResources\stripped.dir
+com.example.timer.test.app-debugAndroidTest-3 D:\bsuir_sem_6\MOBILE\LR2\LR2\app\build\intermediates\merged_res\debugAndroidTest\mergeDebugAndroidTestResources

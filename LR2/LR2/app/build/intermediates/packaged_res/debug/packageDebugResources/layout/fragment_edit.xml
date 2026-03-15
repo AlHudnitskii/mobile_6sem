@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/sequence_name"
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:maxLines="1" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView android:id="@+id/tvWarmup"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:text="Разминка: 10с" android:layout_marginTop="16dp"
+            android:textStyle="bold" android:textSize="14sp"/>
+        <SeekBar android:id="@+id/sbWarmup"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:max="120" android:progress="10"/>
+
+        <TextView android:id="@+id/tvWork"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:text="Работа: 20с" android:layout_marginTop="12dp"
+            android:textStyle="bold" android:textSize="14sp"/>
+        <SeekBar android:id="@+id/sbWork"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:max="300" android:progress="20"/>
+
+        <TextView android:id="@+id/tvRest"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:text="Отдых: 10с" android:layout_marginTop="12dp"
+            android:textStyle="bold" android:textSize="14sp"/>
+        <SeekBar android:id="@+id/sbRest"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:max="120" android:progress="10"/>
+
+        <TextView android:id="@+id/tvCooldown"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:text="Заминка: 10с" android:layout_marginTop="12dp"
+            android:textStyle="bold" android:textSize="14sp"/>
+        <SeekBar android:id="@+id/sbCooldown"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:max="120" android:progress="10"/>
+
+        <TextView android:id="@+id/tvCycles"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:text="Циклы: 8" android:layout_marginTop="12dp"
+            android:textStyle="bold" android:textSize="14sp"/>
+        <SeekBar android:id="@+id/sbCycles"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:max="30" android:progress="8"/>
+
+        <TextView android:id="@+id/tvRestBetween"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:text="Отдых между: 60с" android:layout_marginTop="12dp"
+            android:textStyle="bold" android:textSize="14sp"/>
+        <SeekBar android:id="@+id/sbRestBetween"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:max="180" android:progress="60"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/color"
+            android:textStyle="bold"
+            android:textSize="14sp"
+            android:layout_marginTop="16dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="8dp">
+            <View android:id="@+id/color1" android:layout_width="40dp" android:layout_height="40dp"
+                android:layout_marginEnd="8dp"/>
+            <View android:id="@+id/color2" android:layout_width="40dp" android:layout_height="40dp"
+                android:layout_marginEnd="8dp"/>
+            <View android:id="@+id/color3" android:layout_width="40dp" android:layout_height="40dp"
+                android:layout_marginEnd="8dp"/>
+            <View android:id="@+id/color4" android:layout_width="40dp" android:layout_height="40dp"
+                android:layout_marginEnd="8dp"/>
+            <View android:id="@+id/color5" android:layout_width="40dp" android:layout_height="40dp"
+                android:layout_marginEnd="8dp"/>
+            <View android:id="@+id/color6" android:layout_width="40dp" android:layout_height="40dp"/>
+        </LinearLayout>
+
+        <View
+            android:id="@+id/colorPreview"
+            android:layout_width="match_parent"
+            android:layout_height="24dp"
+            android:layout_marginTop="8dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnSave"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="@string/save" />
+    </LinearLayout>
+</ScrollView>

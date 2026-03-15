@@ -1,0 +1,1 @@
+[{"navFile":"src\\main\\res\\navigation\\nav_graph.xml","javaFiles":["com.example.timer.ui.main.MainFragmentDirections","com.example.timer.ui.timer.TimerFragmentArgs","com.example.timer.ui.edit.EditFragmentArgs"]}]

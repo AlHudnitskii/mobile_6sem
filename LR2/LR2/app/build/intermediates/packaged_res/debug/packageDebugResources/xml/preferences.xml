@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <SwitchPreferenceCompat
+        app:key="dark_theme"
+        app:title="@string/dark_theme"
+        app:summary="@string/dark_theme_summary" />
+
+    <SeekBarPreference
+        app:key="font_scale"
+        app:title="@string/font_scale"
+        app:min="75"
+        android:max="150"
+        android:defaultValue="100"
+        app:showSeekBarValue="true" />
+
+    <ListPreference
+        app:key="language"
+        app:title="@string/language"
+        app:entries="@array/language_names"
+        app:entryValues="@array/language_codes"
+        app:defaultValue="ru" />
+
+    <Preference
+        app:key="clear_data"
+        app:title="@string/clear_data"
+        app:summary="@string/clear_data_summary" />
+</PreferenceScreen>

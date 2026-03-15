@@ -1,0 +1,73 @@
+@startuml
+skinparam activityBackgroundColor #EEF2FF
+skinparam activityBorderColor #5C6BC0
+skinparam arrowColor #5C6BC0
+skinparam startColor #3949AB
+skinparam endColor #3949AB
+skinparam noteBorderColor #5C6BC0
+skinparam noteBackgroundColor #F3F4FF
+
+title Диаграмма активности: Запуск и управление таймером
+
+start
+
+:Открыть приложение;
+:Splash Screen (1.5 сек);
+:Загрузить список последовательностей из Room DB;
+
+if (Список пуст?) then (да)
+  :Показать подсказку «Создайте первую последовательность»;
+else (нет)
+  :Отобразить список в RecyclerView;
+endif
+
+:Пользователь выбирает действие;
+
+fork
+  :Нажать кнопку «+» или «Редактировать»;
+  :Открыть EditFragment;
+  :Ввести название и выбрать цвет;
+  :Настроить длительности фаз ползунками;
+  :Задать количество циклов;
+  :Нажать «Сохранить»;
+  :Записать Sequence в Room DB;
+  :Вернуться на главный экран;
+fork again
+  :Нажать кнопку «Старт»;
+  :Построить список фаз (buildPhases());
+  :Запустить ForegroundService;
+  :Открыть TimerFragment;
+  :Зарегистрировать BroadcastReceiver;
+
+  repeat
+    :Отобразить текущую фазу и обратный отсчёт;
+    :Получить BROADCAST_TICK каждую секунду;
+
+    if (Нажата «Пауза»?) then (да)
+      :ACTION_PAUSE → CountDownTimer.cancel();
+      :Ждать нажатия «Продолжить»;
+      :ACTION_RESUME → startCountDown(remaining);
+    endif
+
+    if (Нажата «Следующая»?) then (да)
+      :ACTION_NEXT → перейти к следующей фазе;
+    elseif (Нажата «Предыдущая»?) then (да)
+      :ACTION_PREV → перейти к предыдущей фазе;
+    endif
+
+    :CountDownTimer.onFinish() → следующая фаза;
+    :Воспроизвести тональный сигнал (ToneGenerator);
+    :Обновить список предстоящих фаз;
+    :Обновить уведомление в строке состояния;
+  repeat while (Есть ещё фазы?) is (да)
+  ->нет;
+
+  :BROADCAST_FINISHED;
+  :Воспроизвести финальный сигнал;
+  :Остановить ForegroundService;
+  :Отменить регистрацию BroadcastReceiver;
+  :Вернуться на главный экран;
+end fork
+
+stop
+@enduml

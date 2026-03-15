@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="language_codes">
+        <item>ru</item>
+        <item>en</item>
+    </string-array>
+    <string-array name="language_names">
+        <item>Русский</item>
+        <item>English</item>
+    </string-array>
+    <color name="colorAccent">#FF8F00</color>
+    <color name="colorBackground">#F5F5F5</color>
+    <color name="colorPrimary">#5C6BC0</color>
+    <color name="colorPrimaryDark">#3949AB</color>
+    <color name="colorSurface">#FFFFFF</color>
+    <string name="add">Добавить</string>
+    <string name="app_name">Tabata Timer</string>
+    <string name="clear_data">Очистить данные</string>
+    <string name="clear_data_summary">Удалить все сохранённые последовательности</string>
+    <string name="color">Цвет</string>
+    <string name="cooldown_label">Заминка</string>
+    <string name="cycles_label">Циклы</string>
+    <string name="dark_theme">Тёмная тема</string>
+    <string name="dark_theme_summary">Переключить тему оформления</string>
+    <string name="delete">Удалить</string>
+    <string name="edit">Редактировать</string>
+    <string name="empty_list">Нет последовательностей.\nНажмите + чтобы создать первую.</string>
+    <string name="font_scale">Размер шрифта (%)</string>
+    <string name="language">Язык</string>
+    <string name="next">Следующая</string>
+    <string name="no_name">Без названия</string>
+    <string name="pause">Пауза</string>
+    <string name="prev">Предыдущая</string>
+    <string name="rest_between_label">Отдых между</string>
+    <string name="rest_label">Отдых</string>
+    <string name="resume">Продолжить</string>
+    <string name="save">Сохранить</string>
+    <string name="sec_suffix">с</string>
+    <string name="sequence_name">Название последовательности</string>
+    <string name="splash_subtitle">Интервальный таймер</string>
+    <string name="start">Старт</string>
+    <string name="stop">Остановить</string>
+    <string name="timer_paused">Пауза</string>
+    <string name="timer_started">Таймер запущен</string>
+    <string name="upcoming_phases">Предстоящие фазы</string>
+    <string name="warmup_label">Разминка</string>
+    <string name="work_label">Работа</string>
+    <style name="Theme.Timer" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryVariant">@color/colorPrimaryDark</item>
+        <item name="colorOnPrimary">@android:color/white</item>
+        <item name="colorSecondary">@color/colorAccent</item>
+    </style>
+    <style name="Theme.Timer.Splash" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="android:windowBackground">@color/colorPrimary</item>
+        <item name="android:statusBarColor">@color/colorPrimary</item>
+    </style>
+</resources>

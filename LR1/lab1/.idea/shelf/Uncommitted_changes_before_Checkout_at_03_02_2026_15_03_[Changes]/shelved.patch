@@ -1,0 +1,101 @@
+Index: app/src/main/res/layout/activity_main.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<LinearLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"match_parent\"\r\n    android:orientation=\"vertical\">\r\n\r\n    <FrameLayout\r\n        android:id=\"@+id/fragmentData\"\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"0dp\"\r\n        android:layout_weight=\"1\"/>\r\n\r\n    <FrameLayout\r\n        android:id=\"@+id/fragmentKeyboard\"\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"0dp\"\r\n        android:layout_weight=\"1\"/>\r\n\r\n</LinearLayout>\r\n
+===================================================================
+diff --git a/app/src/main/res/layout/activity_main.xml b/app/src/main/res/layout/activity_main.xml
+--- a/app/src/main/res/layout/activity_main.xml	(revision 5b2774500b681373a34df02be0569ed42a125e0d)
++++ b/app/src/main/res/layout/activity_main.xml	(date 1772051548964)
+@@ -8,12 +8,12 @@
+         android:id="@+id/fragmentData"
+         android:layout_width="match_parent"
+         android:layout_height="0dp"
+-        android:layout_weight="1"/>
++        android:layout_weight="1" />
+ 
+     <FrameLayout
+         android:id="@+id/fragmentKeyboard"
+         android:layout_width="match_parent"
+         android:layout_height="0dp"
+-        android:layout_weight="1"/>
++        android:layout_weight="1" />
+ 
+ </LinearLayout>
+Index: app/src/main/java/com/example/converter/Converter.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.converter\r\n\r\nobject Converter {\r\n\r\n    val categories = listOf(\"Distance\", \"Weight\", \"Currency\")\r\n\r\n    val units = mapOf(\r\n        \"Distance\" to listOf(\"km\", \"m\", \"cm\", \"mi\", \"ft\"),\r\n        \"Weight\" to listOf(\"kg\", \"g\", \"lb\", \"oz\", \"t\"),\r\n        \"Currency\" to listOf(\"USD\", \"EUR\", \"UAH\", \"GBP\", \"JPY\")\r\n    )\r\n\r\n    private val rates = mapOf(\r\n        \"Distance\" to mapOf(\r\n            \"km\" to 1.0, \"m\" to 1000.0, \"cm\" to 100000.0,\r\n            \"mi\" to 0.621371, \"ft\" to 3280.84\r\n        ),\r\n        \"Weight\" to mapOf(\r\n            \"kg\" to 1.0, \"g\" to 1000.0, \"lb\" to 2.20462,\r\n            \"oz\" to 35.274, \"t\" to 0.001\r\n        ),\r\n        \"Currency\" to mapOf(\r\n            \"USD\" to 1.0, \"EUR\" to 0.92, \"UAH\" to 38.5,\r\n            \"GBP\" to 0.79, \"JPY\" to 149.5\r\n        )\r\n    )\r\n\r\n    fun convert(value: Double, from: String, to: String, category: String): Double {\r\n        val categoryRates = rates[category] ?: return 0.0\r\n        val fromRate = categoryRates[from] ?: return 0.0\r\n        val toRate = categoryRates[to] ?: return 0.0\r\n        return (value / fromRate) * toRate\r\n    }\r\n}\r\n
+===================================================================
+diff --git a/app/src/main/java/com/example/converter/Converter.kt b/app/src/main/java/com/example/converter/Converter.kt
+--- a/app/src/main/java/com/example/converter/Converter.kt	(revision 5b2774500b681373a34df02be0569ed42a125e0d)
++++ b/app/src/main/java/com/example/converter/Converter.kt	(date 1772205397266)
+@@ -1,7 +1,6 @@
+ package com.example.converter
+ 
+ object Converter {
+-
+     val categories = listOf("Distance", "Weight", "Currency")
+ 
+     val units = mapOf(
+Index: app/src/androidTest/java/com/example/converter/ExampleInstrumentedTest.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.converter\r\n\r\nimport androidx.test.platform.app.InstrumentationRegistry\r\nimport androidx.test.ext.junit.runners.AndroidJUnit4\r\n\r\nimport org.junit.Test\r\nimport org.junit.runner.RunWith\r\n\r\nimport org.junit.Assert.*\r\n\r\n/**\r\n * Instrumented test, which will execute on an Android device.\r\n *\r\n * See [testing documentation](http://d.android.com/tools/testing).\r\n */\r\n@RunWith(AndroidJUnit4::class)\r\nclass ExampleInstrumentedTest {\r\n    @Test\r\n    fun useAppContext() {\r\n        // Context of the app under test.\r\n        val appContext = InstrumentationRegistry.getInstrumentation().targetContext\r\n        assertEquals(\"com.example.converter\", appContext.packageName)\r\n    }\r\n}
+===================================================================
+diff --git a/app/src/androidTest/java/com/example/converter/ExampleInstrumentedTest.kt b/app/src/androidTest/java/com/example/converter/ExampleInstrumentedTest.kt
+--- a/app/src/androidTest/java/com/example/converter/ExampleInstrumentedTest.kt	(revision 5b2774500b681373a34df02be0569ed42a125e0d)
++++ b/app/src/androidTest/java/com/example/converter/ExampleInstrumentedTest.kt	(date 1772052470103)
+@@ -1,24 +1,24 @@
+-package com.example.converter
+-
+-import androidx.test.platform.app.InstrumentationRegistry
+-import androidx.test.ext.junit.runners.AndroidJUnit4
+-
+-import org.junit.Test
+-import org.junit.runner.RunWith
+-
+-import org.junit.Assert.*
+-
+-/**
+- * Instrumented test, which will execute on an Android device.
+- *
+- * See [testing documentation](http://d.android.com/tools/testing).
+- */
+-@RunWith(AndroidJUnit4::class)
+-class ExampleInstrumentedTest {
+-    @Test
+-    fun useAppContext() {
+-        // Context of the app under test.
+-        val appContext = InstrumentationRegistry.getInstrumentation().targetContext
+-        assertEquals("com.example.converter", appContext.packageName)
+-    }
+-}
+\ No newline at end of file
++//package com.example.converter
++//
++//import androidx.test.platform.app.InstrumentationRegistry
++//import androidx.test.ext.junit.runners.AndroidJUnit4
++//
++//import org.junit.Test
++//import org.junit.runner.RunWith
++//
++//import org.junit.Assert.*
++//
++///**
++// * Instrumented test, which will execute on an Android device.
++// *
++// * See [testing documentation](http://d.android.com/tools/testing).
++// */
++//@RunWith(AndroidJUnit4::class)
++//class ExampleInstrumentedTest {
++//    @Test
++//    fun useAppContext() {
++//        // Context of the app under test.
++//        val appContext = InstrumentationRegistry.getInstrumentation().targetContext
++//        assertEquals("com.example.converter", appContext.packageName)
++//    }
++//}
+\ No newline at end of file
+diff --git a/app/src/main/java/com/example/converter/DataFragment.kt b/app/src/free/java/com.example.converter/DataFragment.kt
+rename from app/src/main/java/com/example/converter/DataFragment.kt
+rename to app/src/free/java/com.example.converter/DataFragment.kt

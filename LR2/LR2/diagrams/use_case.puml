@@ -1,0 +1,48 @@
+@startuml
+left to right direction
+skinparam packageStyle rectangle
+skinparam actorStyle awesome
+skinparam usecase {
+  BackgroundColor #EEF2FF
+  BorderColor #5C6BC0
+  ArrowColor #5C6BC0
+}
+
+actor "Пользователь" as User
+
+rectangle "Timer" {
+  usecase "Просмотр списка\nпоследовательностей" as UC1
+  usecase "Создать\nпоследовательность" as UC2
+  usecase "Редактировать\nпоследовательность" as UC3
+  usecase "Удалить\nпоследовательность" as UC4
+  usecase "Запустить таймер" as UC5
+  usecase "Управление таймером\n(пауза/след/пред)" as UC6
+  usecase "Выйти из таймера" as UC7
+  usecase "Открыть настройки" as UC8
+  usecase "Переключить тему" as UC9
+  usecase "Изменить размер\nшрифта" as UC10
+  usecase "Сменить язык" as UC11
+  usecase "Очистить данные" as UC12
+  usecase "Звуковое оповещение\nсмены фазы" as UC13
+  usecase "Работа в фоне\n(ForegroundService)" as UC14
+
+  UC3 ..> UC2 : <<extend>>
+  UC5 ..> UC13 : <<include>>
+  UC5 ..> UC14 : <<include>>
+  UC6 ..> UC5 : <<extend>>
+  UC7 ..> UC5 : <<extend>>
+  UC8 ..> UC9 : <<include>>
+  UC8 ..> UC10 : <<include>>
+  UC8 ..> UC11 : <<include>>
+  UC8 ..> UC12 : <<include>>
+}
+
+User --> UC1
+User --> UC2
+User --> UC3
+User --> UC4
+User --> UC5
+User --> UC6
+User --> UC7
+User --> UC8
+@enduml
