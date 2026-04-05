@@ -1,0 +1,108 @@
+@startuml Deployment_Diagram_Battleship_Supabase
+!theme plain
+skinparam backgroundColor #0D1B2A
+skinparam nodeBorderColor #1565C0
+skinparam nodeBackgroundColor #1B2A3B
+skinparam nodeFontColor #E8EDF2
+skinparam componentBorderColor #00838F
+skinparam componentBackgroundColor #0D2A2E
+skinparam componentFontColor #90CAF9
+skinparam databaseBorderColor #FFD700
+skinparam databaseBackgroundColor #1A1600
+skinparam databaseFontColor #FFD700
+skinparam arrowColor #90CAF9
+skinparam cloudBorderColor #1565C0
+
+title Battleship Online (Supabase) -- Deployment Diagram
+
+node "Device: Player 1\n(Android 8.0+)" as D1 {
+    node "Android Runtime (ART)" {
+        artifact "battleship.apk" as APK1 {
+            component "MainActivity + Navigation" as NAV1
+            component "AuthFragment/ViewModel" as AUTH1
+            component "LobbyFragment/ViewModel" as LOBBY1
+            component "PlacementFragment/ViewModel" as PLACE1
+            component "GameFragment/ViewModel" as GAME1
+            component "ProfileFragment/ViewModel" as PROF1
+            component "BoardView (Canvas)" as BV1
+            component "SupabaseRepository" as REPO1
+            component "SupabaseClient\n(Ktor OkHttp)" as CLI1
+        }
+    }
+    component "SharedPreferences\n(JWT Token)" as SP1
+    interface "HTTPS :443" as NET1
+    interface "WSS :443" as WS1
+}
+
+node "Device: Player 2\n(Android 8.0+)" as D2 {
+    node "Android Runtime (ART)" {
+        artifact "battleship.apk" as APK2 {
+            component "SupabaseRepository" as REPO2
+            component "SupabaseClient\n(Ktor OkHttp)" as CLI2
+            component "GameFragment/ViewModel" as GAME2
+            component "BoardView (Canvas)" as BV2
+        }
+    }
+    component "SharedPreferences\n(JWT Token)" as SP2
+    interface "HTTPS :443" as NET2
+    interface "WSS :443" as WS2
+}
+
+cloud "Supabase Cloud (Free Tier)\nauto.supabase.co" as SC {
+    node "Supabase Platform" as SP {
+        database "GoTrue\n(Auth Service)" as GOTR {
+            artifact "users table\naccess_token (JWT)"
+        }
+        database "PostgreSQL 15\n(Primary DB)" as PG {
+            artifact "profiles\n(id, nickname, avatar_url,\nwins, losses)"
+            artifact "games\n(id, player1/2_board[100],\nplayer1/2_ships JSON,\nstatus, winner_id)"
+            artifact "game_records\n(user_id, result, opponent)"
+        }
+        database "PostgREST\n(Auto REST API)" as REST {
+            artifact "GET/POST/PATCH/DELETE\n/rest/v1/{table}"
+        }
+        database "Realtime Server\n(Phoenix/Elixir)" as RTSV {
+            artifact "WebSocket channels\npostgres_changes CDC\nBroadcast / Presence"
+        }
+        database "S3-compatible\nObject Storage" as S3 {
+            artifact "avatars/{uid}/avatar.jpg\n(public bucket)"
+        }
+    }
+}
+
+' Connections Device 1
+CLI1 --> NET1 : Ktor OkHttp
+NET1 --> REST : HTTPS REST API
+NET1 --> GOTR : HTTPS Auth
+NET1 --> S3   : HTTPS multipart PUT
+WS1  --> RTSV : Phoenix WebSocket\nRealtime subscription
+REPO1 --> SP1  : read/write JWT
+
+' Connections Device 2
+CLI2 --> NET2
+NET2 --> REST
+NET2 --> GOTR
+WS2  --> RTSV
+
+' Internal Supabase
+REST --> PG
+PG   --> RTSV : CDC (Logical Replication)
+
+note bottom of PG
+  **Free Tier limits (sufficient for demo):**
+  500 MB database storage
+  5 GB bandwidth / month
+  200 concurrent connections
+  Realtime: 200 concurrent clients
+end note
+
+note right of D1
+  **Player 1 role:**
+  Creates game, executes
+  shot logic (BoardValidator),
+  writes result to Supabase DB.
+  Realtime pushes update
+  to Player 2 automatically.
+end note
+
+@enduml

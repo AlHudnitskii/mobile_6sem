@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <!-- Avatar card -->
+        <androidx.cardview.widget.CardView android:layout_width="match_parent"
+            android:layout_height="wrap_content" app:cardCornerRadius="16dp"
+            app:cardElevation="3dp" app:cardBackgroundColor="@color/surface"
+            android:layout_marginBottom="12dp">
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:orientation="vertical" android:padding="20dp" android:gravity="center_horizontal">
+
+                <ImageView android:id="@+id/iv_current_avatar"
+                    android:layout_width="90dp" android:layout_height="90dp"
+                    android:src="@drawable/ic_avatar_default" android:contentDescription="@string/avatar"/>
+
+                <TextView android:id="@+id/tv_email"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:textSize="13sp" android:textColor="@color/on_surface_variant"
+                    android:layout_marginTop="6dp"/>
+
+                <TextView android:id="@+id/tv_stats"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:textSize="13sp" android:textColor="@color/on_background"
+                    android:layout_marginTop="4dp" android:gravity="center"/>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- Nickname card -->
+        <androidx.cardview.widget.CardView android:layout_width="match_parent"
+            android:layout_height="wrap_content" app:cardCornerRadius="16dp"
+            app:cardElevation="3dp" app:cardBackgroundColor="@color/surface"
+            android:layout_marginBottom="12dp">
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:orientation="vertical" android:padding="16dp">
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="Nickname" android:textStyle="bold" android:textSize="15sp"
+                    android:textColor="@color/on_background" android:layout_marginBottom="10dp"/>
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/til_nickname"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:hint="@string/nickname">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/et_nickname"
+                        android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:inputType="text" android:imeOptions="actionDone"/>
+                </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_save_nickname"
+                    android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:text="@string/save_nickname" android:textAllCaps="false"
+                    android:layout_marginTop="10dp"/>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- Avatar choice card -->
+        <androidx.cardview.widget.CardView android:layout_width="match_parent"
+            android:layout_height="wrap_content" app:cardCornerRadius="16dp"
+            app:cardElevation="3dp" app:cardBackgroundColor="@color/surface"
+            android:layout_marginBottom="12dp">
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:orientation="vertical" android:padding="16dp">
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="@string/choose_avatar" android:textStyle="bold" android:textSize="15sp"
+                    android:textColor="@color/on_background" android:layout_marginBottom="12dp"/>
+                <!-- Presets row -->
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:orientation="horizontal" android:layout_marginBottom="12dp">
+                    <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+                        android:layout_weight="1" android:orientation="vertical"
+                        android:gravity="center" android:padding="8dp"
+                        android:background="@drawable/bg_avatar_selector"
+                        android:clickable="true" android:focusable="true"
+                        android:id="@+id/iv_avatar_1">
+                        <ImageView android:layout_width="64dp" android:layout_height="64dp"
+                            android:src="@drawable/avatar_1" android:contentDescription="@string/avatar_1"/>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="Captain" android:textSize="12sp"
+                            android:textColor="@color/on_surface_variant" android:layout_marginTop="4dp"/>
+                    </LinearLayout>
+                    <View android:layout_width="12dp" android:layout_height="0dp"/>
+                    <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+                        android:layout_weight="1" android:orientation="vertical"
+                        android:gravity="center" android:padding="8dp"
+                        android:background="@drawable/bg_avatar_selector"
+                        android:clickable="true" android:focusable="true"
+                        android:id="@+id/iv_avatar_2">
+                        <ImageView android:layout_width="64dp" android:layout_height="64dp"
+                            android:src="@drawable/avatar_2" android:contentDescription="@string/avatar_2"/>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="Sailor" android:textSize="12sp"
+                            android:textColor="@color/on_surface_variant" android:layout_marginTop="4dp"/>
+                    </LinearLayout>
+                </LinearLayout>
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_upload_avatar"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:text="@string/upload_custom_avatar" android:textAllCaps="false"/>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <ProgressBar android:id="@+id/progress_bar"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:visibility="gone" android:layout_gravity="center"
+            android:layout_marginBottom="8dp"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_sign_out"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:text="@string/sign_out" android:textAllCaps="false"/>
+    </LinearLayout>
+</ScrollView>

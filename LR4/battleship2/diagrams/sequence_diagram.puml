@@ -1,0 +1,92 @@
+@startuml Sequence_Diagram_Battleship_Supabase
+!theme plain
+skinparam backgroundColor #0D1B2A
+skinparam sequenceArrowColor #90CAF9
+skinparam sequenceLifeLineBorderColor #1565C0
+skinparam sequenceLifeLineBackgroundColor #1B2A3B
+skinparam participantBackgroundColor #1B2A3B
+skinparam participantBorderColor #1565C0
+skinparam participantFontColor #E8EDF2
+skinparam noteBorderColor #00838F
+skinparam noteBackgroundColor #0D2A2E
+skinparam noteFontColor #E8EDF2
+
+title Battleship Online (Supabase) -- Sequence Diagram
+
+actor "Player 1 (Host)" as P1
+actor "Player 2 (Opponent)" as P2
+participant "Fragment + ViewModel" as UI
+participant "SupabaseRepository\n(Ktor HTTP)" as Repo
+database "Supabase Auth\nPOST /auth/v1" as Auth
+database "Supabase DB\nPostgreSQL REST" as DB
+database "Supabase Storage\nS3-compatible" as Storage
+participant "Supabase Realtime\nWebSocket Phoenix" as RT
+
+== Authentication ==
+P1 -> UI : enter email + password
+UI -> Repo : signUp(email, password, nickname)
+Repo -> Auth : POST /auth/v1/signup
+Auth --> Repo : {access_token, user.id}
+Repo -> Repo : save token SharedPreferences
+Repo -> DB : POST /rest/v1/profiles {id, email, nickname}
+DB --> Repo : 201 Created
+Repo --> UI : Result.Success
+UI -> UI : navigate lobbyFragment
+
+== Create & Join Game ==
+P1 -> UI : Create New Game
+UI -> Repo : createGame(nickname)
+Repo -> DB : POST /rest/v1/games {id=gameId, player1_id, status=WAITING}
+DB --> Repo : 201
+Repo --> UI : Result.Success(gameId)
+P1 -> P2 : share gameId (out-of-band)
+
+P2 -> UI : joinGame(gameId)
+Repo -> DB : GET /rest/v1/games?id=eq.{gameId}
+DB --> Repo : GameRow
+Repo -> DB : PATCH {player2_id, status=PLACEMENT}
+DB --> Repo : 204
+
+== Ship Placement ==
+P1 -> UI : autoPlace + Ready
+UI -> Repo : submitShips(isPlayer1=true)
+Repo -> DB : PATCH player1_board, player1_ships, player1_ready=true
+note right of Repo : GET to check both ready\nthen PATCH status=PLAYER1_TURN
+
+P2 -> UI : autoPlace + Ready
+UI -> Repo : submitShips(isPlayer1=false)
+Repo -> DB : PATCH player2_board, player2_ships, player2_ready=true
+
+== Realtime Subscription ==
+UI -> Repo : observeGame(gameId)
+Repo -> RT : WebSocket connect + phx_join\n{postgres_changes, table=games, filter=id=eq.gameId}
+RT --> Repo : phx_reply ok
+
+== Battle (Player 1 fires) ==
+P1 -> UI : tap enemy cell (row, col)
+UI -> Repo : fireShot(row, col, isPlayer1=true)
+Repo -> Repo : BoardValidator.processShot()
+Repo -> DB : PATCH {player2_board, player2_ships, status=PLAYER2_TURN}
+DB --> RT : postgres_changes UPDATE event
+RT --> Repo : push event (both subscribers)
+Repo --> UI : Flow emits GameRow
+UI -> P1 : update boards
+UI -> P2 : update boards
+
+== Game Over ==
+Repo -> Repo : allSunk() == true
+Repo -> DB : PATCH {status=FINISHED, winner_id}
+Repo -> DB : POST game_records (WIN + LOSS)
+Repo -> DB : PATCH profiles (stats)
+RT --> UI : FINISHED event
+UI -> P1 : Victory dialog
+UI -> P2 : Defeated dialog
+
+== Avatar Upload ==
+P1 -> UI : pick image (permission checked)
+UI -> Repo : uploadAvatar(context, uri)
+Repo -> Repo : compressToJpeg(200KB)
+Repo -> Storage : PUT /storage/v1/object/avatars/{uid}/avatar.jpg
+Storage --> Repo : 200 OK (public URL)
+Repo -> DB : PATCH profiles {avatar_url}
+@enduml

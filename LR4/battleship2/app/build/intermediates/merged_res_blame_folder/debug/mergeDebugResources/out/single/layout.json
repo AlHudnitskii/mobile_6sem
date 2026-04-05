@@ -1,0 +1,34 @@
+[
+    {
+        "merged": "com.example.battleship.app-mergeDebugResources-49:/layout/fragment_game.xml",
+        "source": "com.example.battleship.app-main-52:/layout/fragment_game.xml"
+    },
+    {
+        "merged": "com.example.battleship.app-mergeDebugResources-49:/layout/fragment_stats.xml",
+        "source": "com.example.battleship.app-main-52:/layout/fragment_stats.xml"
+    },
+    {
+        "merged": "com.example.battleship.app-mergeDebugResources-49:/layout/fragment_auth.xml",
+        "source": "com.example.battleship.app-main-52:/layout/fragment_auth.xml"
+    },
+    {
+        "merged": "com.example.battleship.app-mergeDebugResources-49:/layout/fragment_lobby.xml",
+        "source": "com.example.battleship.app-main-52:/layout/fragment_lobby.xml"
+    },
+    {
+        "merged": "com.example.battleship.app-mergeDebugResources-49:/layout/item_game_record.xml",
+        "source": "com.example.battleship.app-main-52:/layout/item_game_record.xml"
+    },
+    {
+        "merged": "com.example.battleship.app-mergeDebugResources-49:/layout/fragment_placement.xml",
+        "source": "com.example.battleship.app-main-52:/layout/fragment_placement.xml"
+    },
+    {
+        "merged": "com.example.battleship.app-mergeDebugResources-49:/layout/activity_main.xml",
+        "source": "com.example.battleship.app-main-52:/layout/activity_main.xml"
+    },
+    {
+        "merged": "com.example.battleship.app-mergeDebugResources-49:/layout/fragment_profile.xml",
+        "source": "com.example.battleship.app-main-52:/layout/fragment_profile.xml"
+    }
+]
