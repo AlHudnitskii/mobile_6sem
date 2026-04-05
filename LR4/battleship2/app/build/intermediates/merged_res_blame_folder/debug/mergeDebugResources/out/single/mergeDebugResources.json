@@ -1,0 +1,106 @@
+[
+    {
+        "merged": "com.example.battleship.app-debug-50:/drawable_ic_ship.xml.flat",
+        "source": "com.example.battleship.app-main-52:/drawable/ic_ship.xml"
+    },
+    {
+        "merged": "com.example.battleship.app-debug-50:/drawable_ic_games.xml.flat",
+        "source": "com.example.battleship.app-main-52:/drawable/ic_games.xml"
+    },
+    {
+        "merged": "com.example.battleship.app-debug-50:/color_bottom_nav_color.xml.flat",
+        "source": "com.example.battleship.app-main-52:/color/bottom_nav_color.xml"
+    },
+    {
+        "merged": "com.example.battleship.app-debug-50:/navigation_nav_graph.xml.flat",
+        "source": "com.example.battleship.app-main-52:/navigation/nav_graph.xml"
+    },
+    {
+        "merged": "com.example.battleship.app-debug-50:/layout_fragment_lobby.xml.flat",
+        "source": "com.example.battleship.app-main-52:/layout/fragment_lobby.xml"
+    },
+    {
+        "merged": "com.example.battleship.app-debug-50:/drawable_ic_avatar_default.xml.flat",
+        "source": "com.example.battleship.app-main-52:/drawable/ic_avatar_default.xml"
+    },
+    {
+        "merged": "com.example.battleship.app-debug-50:/drawable_bg_loss_item.xml.flat",
+        "source": "com.example.battleship.app-main-52:/drawable/bg_loss_item.xml"
+    },
+    {
+        "merged": "com.example.battleship.app-debug-50:/drawable_ic_stats.xml.flat",
+        "source": "com.example.battleship.app-main-52:/drawable/ic_stats.xml"
+    },
+    {
+        "merged": "com.example.battleship.app-debug-50:/layout_fragment_profile.xml.flat",
+        "source": "com.example.battleship.app-main-52:/layout/fragment_profile.xml"
+    },
+    {
+        "merged": "com.example.battleship.app-debug-50:/drawable_avatar_2.xml.flat",
+        "source": "com.example.battleship.app-main-52:/drawable/avatar_2.xml"
+    },
+    {
+        "merged": "com.example.battleship.app-debug-50:/layout_item_game_record.xml.flat",
+        "source": "com.example.battleship.app-main-52:/layout/item_game_record.xml"
+    },
+    {
+        "merged": "com.example.battleship.app-debug-50:/layout_fragment_placement.xml.flat",
+        "source": "com.example.battleship.app-main-52:/layout/fragment_placement.xml"
+    },
+    {
+        "merged": "com.example.battleship.app-debug-50:/drawable_ic_launcher_foreground.xml.flat",
+        "source": "com.example.battleship.app-main-52:/drawable/ic_launcher_foreground.xml"
+    },
+    {
+        "merged": "com.example.battleship.app-debug-50:/mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "com.example.battleship.app-main-52:/mipmap-anydpi-v26/ic_launcher_round.xml"
+    },
+    {
+        "merged": "com.example.battleship.app-debug-50:/mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "com.example.battleship.app-main-52:/mipmap-anydpi-v26/ic_launcher.xml"
+    },
+    {
+        "merged": "com.example.battleship.app-debug-50:/menu_bottom_nav_menu.xml.flat",
+        "source": "com.example.battleship.app-main-52:/menu/bottom_nav_menu.xml"
+    },
+    {
+        "merged": "com.example.battleship.app-debug-50:/drawable_bg_avatar_selector.xml.flat",
+        "source": "com.example.battleship.app-main-52:/drawable/bg_avatar_selector.xml"
+    },
+    {
+        "merged": "com.example.battleship.app-debug-50:/layout_fragment_game.xml.flat",
+        "source": "com.example.battleship.app-main-52:/layout/fragment_game.xml"
+    },
+    {
+        "merged": "com.example.battleship.app-debug-50:/layout_fragment_auth.xml.flat",
+        "source": "com.example.battleship.app-main-52:/layout/fragment_auth.xml"
+    },
+    {
+        "merged": "com.example.battleship.app-debug-50:/drawable_bg_card.xml.flat",
+        "source": "com.example.battleship.app-main-52:/drawable/bg_card.xml"
+    },
+    {
+        "merged": "com.example.battleship.app-debug-50:/layout_activity_main.xml.flat",
+        "source": "com.example.battleship.app-main-52:/layout/activity_main.xml"
+    },
+    {
+        "merged": "com.example.battleship.app-debug-50:/drawable_bg_turn_mine.xml.flat",
+        "source": "com.example.battleship.app-main-52:/drawable/bg_turn_mine.xml"
+    },
+    {
+        "merged": "com.example.battleship.app-debug-50:/layout_fragment_stats.xml.flat",
+        "source": "com.example.battleship.app-main-52:/layout/fragment_stats.xml"
+    },
+    {
+        "merged": "com.example.battleship.app-debug-50:/drawable_avatar_1.xml.flat",
+        "source": "com.example.battleship.app-main-52:/drawable/avatar_1.xml"
+    },
+    {
+        "merged": "com.example.battleship.app-debug-50:/drawable_ic_profile.xml.flat",
+        "source": "com.example.battleship.app-main-52:/drawable/ic_profile.xml"
+    },
+    {
+        "merged": "com.example.battleship.app-debug-50:/drawable_bg_win_item.xml.flat",
+        "source": "com.example.battleship.app-main-52:/drawable/bg_win_item.xml"
+    }
+]

@@ -1,0 +1,6 @@
+com.example.battleship.test.app-jetified-core-1.6.1-0 C:\Users\rrddu\.gradle\caches\9.0-milestone-1\transforms\075663889f03daf6b9b31461fb3d4559\transformed\jetified-core-1.6.1\res
+com.example.battleship.test.app-jetified-tracing-1.2.0-1 C:\Users\rrddu\.gradle\caches\9.0-milestone-1\transforms\ce43783c6e1e280796ba6552bf419f96\transformed\jetified-tracing-1.2.0\res
+com.example.battleship.test.app-androidTest-2 D:\bsuir_sem_6\MOBILE\LR4\battleship2\app\build\generated\res\resValues\androidTest\debug
+com.example.battleship.test.app-mergeDebugAndroidTestResources-3 D:\bsuir_sem_6\MOBILE\LR4\battleship2\app\build\intermediates\incremental\debugAndroidTest\mergeDebugAndroidTestResources\merged.dir
+com.example.battleship.test.app-mergeDebugAndroidTestResources-4 D:\bsuir_sem_6\MOBILE\LR4\battleship2\app\build\intermediates\incremental\debugAndroidTest\mergeDebugAndroidTestResources\stripped.dir
+com.example.battleship.test.app-debugAndroidTest-5 D:\bsuir_sem_6\MOBILE\LR4\battleship2\app\build\intermediates\merged_res\debugAndroidTest\mergeDebugAndroidTestResources

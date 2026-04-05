@@ -1,0 +1,3 @@
+-keepattributes *Annotation*
+-keep class com.example.battleship.** { *; }
+-keep class kotlinx.serialization.** { *; }

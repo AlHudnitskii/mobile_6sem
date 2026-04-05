@@ -1,0 +1,51 @@
+[versions]
+agp                 = "8.7.3"
+kotlin              = "2.0.21"
+coreKtx             = "1.15.0"
+appcompat           = "1.7.0"
+material            = "1.12.0"
+constraintlayout    = "2.2.0"
+cardview            = "1.0.0"
+lifecycleKtx        = "2.8.7"
+navigationKtx       = "2.8.5"
+activityKtx         = "1.9.3"
+fragmentKtx         = "1.8.5"
+coroutines          = "1.9.0"
+ktor                = "2.3.12"
+glide               = "4.16.0"
+serialization       = "1.7.3"
+junit               = "4.13.2"
+androidxJunit       = "1.2.1"
+espresso            = "3.6.1"
+safeArgs            = "2.8.5"
+
+[libraries]
+androidx-core-ktx           = { group = "androidx.core",                name = "core-ktx",                    version.ref = "coreKtx" }
+androidx-appcompat          = { group = "androidx.appcompat",           name = "appcompat",                   version.ref = "appcompat" }
+material                    = { group = "com.google.android.material",  name = "material",                    version.ref = "material" }
+androidx-constraintlayout   = { group = "androidx.constraintlayout",   name = "constraintlayout",            version.ref = "constraintlayout" }
+androidx-cardview           = { group = "androidx.cardview",            name = "cardview",                    version.ref = "cardview" }
+androidx-lifecycle-vm       = { group = "androidx.lifecycle",           name = "lifecycle-viewmodel-ktx",     version.ref = "lifecycleKtx" }
+androidx-lifecycle-ld       = { group = "androidx.lifecycle",           name = "lifecycle-livedata-ktx",      version.ref = "lifecycleKtx" }
+androidx-navigation-frag    = { group = "androidx.navigation",          name = "navigation-fragment-ktx",     version.ref = "navigationKtx" }
+androidx-navigation-ui      = { group = "androidx.navigation",          name = "navigation-ui-ktx",           version.ref = "navigationKtx" }
+androidx-activity-ktx       = { group = "androidx.activity",            name = "activity-ktx",                version.ref = "activityKtx" }
+androidx-fragment-ktx       = { group = "androidx.fragment",            name = "fragment-ktx",                version.ref = "fragmentKtx" }
+ktor-client-core            = { group = "io.ktor",                      name = "ktor-client-core",            version.ref = "ktor" }
+ktor-client-okhttp          = { group = "io.ktor",                      name = "ktor-client-okhttp",          version.ref = "ktor" }
+ktor-client-content         = { group = "io.ktor",                      name = "ktor-client-content-negotiation", version.ref = "ktor" }
+ktor-serialization-json     = { group = "io.ktor",                      name = "ktor-serialization-kotlinx-json", version.ref = "ktor" }
+ktor-client-websockets      = { group = "io.ktor",                      name = "ktor-client-websockets",      version.ref = "ktor" }
+ktor-client-logging         = { group = "io.ktor",                      name = "ktor-client-logging",         version.ref = "ktor" }
+kotlinx-serialization-json  = { group = "org.jetbrains.kotlinx",        name = "kotlinx-serialization-json",  version.ref = "serialization" }
+kotlinx-coroutines-android  = { group = "org.jetbrains.kotlinx",        name = "kotlinx-coroutines-android",  version.ref = "coroutines" }
+glide                       = { group = "com.github.bumptech.glide",    name = "glide",                       version.ref = "glide" }
+junit                       = { group = "junit",                        name = "junit",                       version.ref = "junit" }
+androidx-junit              = { group = "androidx.test.ext",            name = "junit",                       version.ref = "androidxJunit" }
+androidx-espresso           = { group = "androidx.test.espresso",       name = "espresso-core",               version.ref = "espresso" }
+
+[plugins]
+android-application     = { id = "com.android.application",                        version.ref = "agp" }
+kotlin-android          = { id = "org.jetbrains.kotlin.android",                   version.ref = "kotlin" }
+kotlin-serialization    = { id = "org.jetbrains.kotlin.plugin.serialization",      version.ref = "kotlin" }
+safe-args               = { id = "androidx.navigation.safeargs.kotlin",             version.ref = "safeArgs" }

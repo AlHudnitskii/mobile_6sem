@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Brand -->
+    <color name="primary">#1565C0</color>
+    <color name="primary_dark">#0D47A1</color>
+    <color name="primary_light">#E3F2FD</color>
+    <color name="accent">#0288D1</color>
+    <color name="secondary">#00838F</color>
+
+    <!-- Light UI -->
+    <color name="background">#F5F7FA</color>
+    <color name="surface">#FFFFFF</color>
+    <color name="surface_variant">#EEF2F7</color>
+    <color name="on_background">#1A2332</color>
+    <color name="on_surface">#1A2332</color>
+    <color name="on_surface_variant">#64748B</color>
+    <color name="divider">#E2E8F0</color>
+    <color name="white">#FFFFFF</color>
+
+    <!-- Game board — navy theme on light background -->
+    <color name="board_bg">#1E3A5F</color>
+    <color name="board_grid">#2D5A8E</color>
+    <color name="ship_color">#546E7A</color>
+    <color name="hit_color">#D32F2F</color>
+    <color name="miss_color">#1565C0</color>
+    <color name="sunk_color">#880E0E</color>
+    <color name="hit_cross">#FFCDD2</color>
+    <color name="miss_dot">#90CAF9</color>
+
+    <!-- Turn indicators -->
+    <color name="turn_mine">#1565C0</color>
+    <color name="turn_opponent">#78909C</color>
+
+    <!-- Result colors -->
+    <color name="win_color">#2E7D32</color>
+    <color name="loss_color">#C62828</color>
+    <color name="win_bg">#E8F5E9</color>
+    <color name="loss_bg">#FFEBEE</color>
+</resources>

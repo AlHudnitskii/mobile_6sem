@@ -1,0 +1,146 @@
+@startuml Statechart_Diagram_Battleship_Supabase
+!theme plain
+skinparam backgroundColor #0D1B2A
+skinparam stateBorderColor #1565C0
+skinparam stateBackgroundColor #1B2A3B
+skinparam stateFontColor #E8EDF2
+skinparam stateArrowColor #90CAF9
+skinparam noteBorderColor #00838F
+skinparam noteBackgroundColor #0D2A2E
+skinparam noteFontColor #B2EBF2
+
+title Battleship Online (Supabase) -- Statechart Diagram
+
+[*] --> UNAUTHENTICATED
+
+state UNAUTHENTICATED {
+    [*] --> ShowAuth
+    ShowAuth : AuthFragment\nlogin / register form
+    ShowAuth : JWT not in SharedPreferences
+}
+
+UNAUTHENTICATED --> AUTHENTICATED : signIn()/signUp() OK\nJWT saved to SharedPrefs
+
+state AUTHENTICATED {
+
+    [*] --> LOBBY
+
+    state LOBBY {
+        [*] --> Idle
+        Idle : show Create / Join buttons
+        Idle --> CreatingGame : btnCreateGame
+        Idle --> JoiningGame  : btnJoinGame + ID entered
+
+        state CreatingGame {
+            [*] --> PostingToSupabase
+            PostingToSupabase : POST /rest/v1/games
+            PostingToSupabase --> ShowingId : [201 OK]
+            ShowingId : display 6-char game ID dialog
+        }
+        state JoiningGame {
+            [*] --> FetchingGame
+            FetchingGame : GET /rest/v1/games?id=eq.{id}
+            FetchingGame --> [*] : [200, status=WAITING]
+            FetchingGame --> Idle : [404 or wrong status]\nSnackbar error
+        }
+    }
+
+    LOBBY --> PLACEMENT : game created/joined
+
+    state PLACEMENT {
+        [*] --> PlacingShips
+        PlacingShips : tap cells or Auto Place
+        PlacingShips : BoardValidator.canPlace() per tap
+        PlacingShips --> PlacingShips : [invalid position]
+        PlacingShips --> AllPlaced : [all 10 ships placed]
+        AllPlaced : "Ready!" button enabled
+        AllPlaced --> WaitingForBoth : tap Ready\nPATCH player_ready=true
+        WaitingForBoth : poll / realtime for both ready
+        WaitingForBoth --> WaitingForBoth : [only one player ready]
+        note right of WaitingForBoth
+            Supabase Realtime pushes
+            postgres_changes when
+            status -> PLAYER1_TURN
+        end note
+    }
+
+    PLACEMENT --> BATTLE : [both ready]\nstatus=PLAYER1_TURN
+
+    state BATTLE {
+        [*] --> PLAYER1_TURN
+
+        state PLAYER1_TURN {
+            [*] --> P1Targeting
+            P1Targeting : board_enemy is interactive
+            P1Targeting : Player 2 sees "Waiting..."
+            P1Targeting --> P1Fires : tap valid cell
+        }
+
+        state P1Fires {
+            [*] --> Processing
+            Processing : BoardValidator.processShot()
+            Processing --> HIT_P1 : [SHIP cell]
+            Processing --> MISS_P1 : [EMPTY cell]
+            HIT_P1 --> CheckSunk1
+            MISS_P1 --> SwitchToP2
+            state CheckSunk1 {
+                [*] --> Sunk1?
+                Sunk1? --> AllSunk1 : [hits==size for all]
+                Sunk1? --> SwitchToP2 : [not sunk]
+            }
+        }
+
+        P1Fires --> PLAYER2_TURN : [SwitchToP2]
+        P1Fires --> GAME_OVER    : [AllSunk1]
+
+        state PLAYER2_TURN {
+            [*] --> P2Targeting
+            P2Targeting --> P2Fires : tap valid cell
+        }
+
+        state P2Fires {
+            [*] --> Processing2
+            Processing2 --> CheckSunk2
+            CheckSunk2 --> AllSunk2   : [all sunk]
+            CheckSunk2 --> SwitchToP1 : [not sunk]
+        }
+
+        P2Fires --> PLAYER1_TURN : [SwitchToP1]
+        P2Fires --> GAME_OVER    : [AllSunk2]
+
+        note left of PLAYER1_TURN
+            PATCH /rest/v1/games sets
+            status = PLAYER2_TURN.
+            Supabase Realtime CDC
+            notifies both devices via WS.
+        end note
+    }
+
+    BATTLE --> GAME_OVER : status=FINISHED
+
+    state GAME_OVER {
+        [*] --> SavingStats
+        SavingStats : POST game_records\nPATCH profiles (wins/losses)
+        SavingStats --> ShowResult
+        ShowResult : MaterialAlertDialog (won/lost)
+        ShowResult --> [*] : "Back to Lobby"
+    }
+
+    GAME_OVER --> LOBBY
+
+    state "Profile / Stats (Bottom Nav)" as PS {
+        [*] --> Viewing
+        Viewing --> EditingNick    : save nickname\nPATCH /profiles
+        Viewing --> SelectPreset   : tap avatar 1 or 2\nPATCH avatar_index
+        Viewing --> UploadingPhoto : tap Upload\ncheck READ_MEDIA_IMAGES perm
+        UploadingPhoto --> PermDenied  : [permission denied]
+        UploadingPhoto --> Compressing : [permission granted]
+        Compressing    --> PuttingToStorage : compressToJpeg(200KB)\nPUT /storage/v1/object/avatars/
+        PuttingToStorage --> Viewing : [upload OK, URL saved]
+        PermDenied --> Viewing : show rationale dialog
+    }
+}
+
+AUTHENTICATED --> UNAUTHENTICATED : signOut()\nclear JWT SharedPrefs
+
+@enduml

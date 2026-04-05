@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/background"
+    android:padding="10dp">
+
+    <!-- Status bar -->
+    <TextView android:id="@+id/tv_turn_indicator"
+        android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:text="@string/your_turn" android:textColor="@color/white"
+        android:textSize="15sp" android:textStyle="bold"
+        android:gravity="center" android:paddingVertical="10dp"
+        android:background="@color/turn_mine"
+        android:layout_marginBottom="4dp"/>
+
+    <TextView android:id="@+id/tv_status"
+        android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:text="@string/waiting" android:textColor="@color/on_surface_variant"
+        android:textSize="12sp" android:gravity="center" android:layout_marginBottom="6dp"/>
+
+    <!-- Enemy board (larger) -->
+    <TextView android:id="@+id/tv_enemy_label"
+        android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:text="🎯  Enemy Waters" android:textColor="@color/on_background"
+        android:textSize="13sp" android:textStyle="bold" android:gravity="center"
+        android:layout_marginBottom="4dp"/>
+
+    <com.example.battleship.game.BoardView
+        android:id="@+id/board_enemy"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1.6"
+        android:layout_marginBottom="6dp"/>
+
+    <!-- My board (smaller) -->
+    <TextView android:id="@+id/tv_mine_label"
+        android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:text="🛡  My Fleet" android:textColor="@color/on_background"
+        android:textSize="13sp" android:textStyle="bold" android:gravity="center"
+        android:layout_marginBottom="4dp"/>
+
+    <com.example.battleship.game.BoardView
+        android:id="@+id/board_mine"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginBottom="4dp"/>
+
+    <!-- Waiting overlay text -->
+    <TextView android:id="@+id/tv_waiting"
+        android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:text="@string/waiting_for_opponent"
+        android:textColor="@color/primary" android:textSize="13sp"
+        android:gravity="center" android:visibility="gone"
+        android:background="@color/primary_light" android:padding="8dp"/>
+</LinearLayout>
